@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Users\LoginController;
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\MenuController;
-use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\UploadController;
@@ -71,16 +70,6 @@ Route::middleware(['auth'])->group(function(){
             Route::DELETE('delete',[SliderController::class,'destroy']);
         });
 
-
-        //Blog
-        Route::prefix('/blog')->group(function(){
-            Route::get('add',[BlogController::class,'create']);
-            Route::post('add',[BlogController::class,'store']);
-            Route::get('list',[BlogController::class,'index']);
-            Route::get('edit/{blog}',[BlogController::class,'show']);
-            Route::post('edit/{blog}',[BlogController::class,'update']);
-            Route::DELETE('delete',[BlogController::class,'destroy']);
-        });
         //Upload
         /* Route::post('upload',[UploadController::class,'store']); */
 
@@ -94,5 +83,3 @@ Route::get('/product/{id}',[HomeController::class,'getProductId'])->name('get-pr
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('blog',[BlogController::class, 'u_index']);
-Route::get('blog/detail/{id}',[BlogController::class, 'detail']);
