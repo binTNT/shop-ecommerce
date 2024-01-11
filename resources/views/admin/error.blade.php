@@ -20,3 +20,10 @@
     </div>
 @endif
 
+
+{{-- @if(Illuminate\Support\Facades\Session FacadesSession::has('error'))
+    <div class="alert alert-danger">
+        {{FacadesSession::get('error')}}
+    </div>
+@endif --}}
+
