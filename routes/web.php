@@ -11,6 +11,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Services\UploadService;
 use Illuminate\Support\Facades\Auth;
 use PHPUnit\Framework\Attributes\Group;
+use App\Http\Controllers\Admin\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +71,15 @@ Route::middleware(['auth'])->group(function(){
             Route::DELETE('delete',[SliderController::class,'destroy']);
         });
 
+
+        Route::prefix('/blog')->group(function(){
+            Route::get('add',[BlogController::class,'create']);
+            Route::post('add',[BlogController::class,'store']);
+            Route::get('list',[BlogController::class,'index']);
+            Route::get('edit/{blog}',[BlogController::class,'show']);
+            Route::post('edit/{blog}',[BlogController::class,'update']);
+            Route::DELETE('delete',[BlogController::class,'destroy']);
+        });
         //Upload
         /* Route::post('upload',[UploadController::class,'store']); */
 
@@ -80,6 +90,7 @@ Route::middleware(['auth'])->group(function(){
 Route::get('/',[HomeController::class,'index']);
 Route::post('/services/loadProduct',[HomeController::class,'loadMore']);
 Route::get('/product/{id}',[HomeController::class,'getProductId'])->name('get-product-id');
-
+Route::get('blog',[BlogController::class, 'u_index']);
+Route::get('blog/detail/{id}',[BlogController::class, 'detail']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
